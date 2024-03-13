@@ -1,1 +1,19 @@
-# communications_simulation
+# Communications Simulation Project
+
+Goal: To design and verify a communication system that transmits in the presence of cosmic background noise MNIST images from Mars to Earth as intelligible images using the minimum total signal energy.
+
+# Desired Application
+
+A robot that takes pictures of different shapes found in the surface of Mars and then transforms it to a black and white picture highlighting the shape form in a 28x28 grid (through signal processing techniques); then, the final image is transmitted to Earth. Since the main idea of the scientists is to see the shape not the specific details, the quality of the image needs to be enough for the scientints to extract the "original" shape. This means that images need to be clear but not extremely clear, so perhaps they can even have errors at less than 7.5 %, as we see in one of the demos. Of course, if the MNIST images can be send in an efficient way with not a lot of errors, we could use the same designed system but changing the binary image digits. 
+
+# Overview
+
+Simulate the data transmission of MNIST images with certain design constraints such as electrical power (which limits the signal), cosmic radiation, and maximum bit error probability for intelligible images. 
+
+The data is sent through a prototype signal. In this case, we selected a square wave of length 40 with 1 period. We selected that signal because if we are transmitting images from Mars, that means the communication system must transmit through cosmic background noise and through very long distance (were the will be attenuated). This said, since we have no control over the noise, the probability of error will be reduced by increasing the energy of the signal as much as possible. A greater energy would also imply a higher signal to noise ratio (SNR) than the sinusoid wave presented. This could be done in three ways: (1) increasing the amplitude, (2) forming binary signals, and (3) increasing the length of the signal. (1) is not possible since the maximum and minimum amplitudes are already  and . (2) and (3) we could do. Let's do (2), which will have an energy of , and also do (3), and see if the signal has a better performance as the project moves on. Even though this is not necessary, since we see that an N_sig of 46 also works, it shows that even though the initial signal we thought of used an Nsig of 80, the constraints could also be fulfilled with a lesser signal duration. Of course, it is important to note that increasing the length comes at the expense of the transmission time.
+
+Moreover, we go one step further and simulate error correction via the bit repetition method. This means that we will have a data increase factor (DIF) of 3. Two bits will help us detect the error but three bits will help us correct the error based on the error detechtion.
+
+# Summary
+
+The design process requires one to first understand the contraints (since they cannot be changed) and then create the communication system around them. After the constraints are understood, we saw the expected results depending on the probability of error (without transmitting the signals and being affected by noise), merely to comprehend what the goal of the system was. The next important part was to design the signal: to do this, a prototype was created based on the limits of the battery voltage to have a base, but then modifications were made so that the SNR could make PE less than and close to PE_max and so that the signal is above an Es,min (that achieves PE_max with noise)--which is accomplished by changing the signal legnth. Afterwards, a code helped see the effects that noise may have on the transmission, and a processor was used receive the data after the noise effects. After getting the probability of error of the transmitted signal (which was close to PE_max), the bit level error correction technique was used.  This method reduced the probability of error in the final received transmission. As a final step, one analyzed the whole system design: one needs to understand the trade-off it has, what can improve and how could it be improved, and its limits.
